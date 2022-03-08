@@ -56,11 +56,19 @@ def recursive_reverse(cc):
     return reverse
 
 
+def equation_relative_speed(base_speed, new_speed):
+    return base_speed / SPEEDS[150]['speed'] * new_speed
+
+
 def find_custom_stats_equation(cc):
     new_torque = equation_torque(cc)
     new_speed = equation_speed(cc)
     new_reverse = equation_reverse(cc)
-    return {int(cc): {'name': f'{cc}cc', 'torque': new_torque, 'speed': new_speed, 'reverse': new_reverse}}
+    new_air_speed = equation_relative_speed(70, new_speed)
+    new_surface2_speed = equation_relative_speed(44, new_speed)
+    new_surface3_speed = equation_relative_speed(30, new_speed)
+    return {int(cc): {'name': f'{cc}cc', 'torque': new_torque, 'speed': new_speed, 'reverse': new_reverse,
+                      'air_speed': new_air_speed, 'surface2': new_surface2_speed, 'surface3': new_surface3_speed}}
 
 
 def find_custom_stats_recursive(cc):
@@ -78,14 +86,14 @@ def main():
     target_cc = input('Find stats for what CC? ')
     cc = int(target_cc)
     stats = find_custom_stats_equation(cc)
-    out = f'{stats[cc]["name"]}\nTorque: {stats[cc]["torque"]}\nSpeed: {stats[cc]["speed"]}\nReverse: {stats[cc]["reverse"]}'
+    out = f'{stats[cc]["name"]}\nTorque: {stats[cc]["torque"]}\nSpeed: {stats[cc]["speed"]}\nReverse: {stats[cc]["reverse"]}\nAir Speed: {stats[cc]["air_speed"]}\nSurface 2: {stats[cc]["surface2"]}\nSurface 3: {stats[cc]["surface3"]}'
     print(out)
 
-    cc_round = custom_round(cc)
-    stats = find_custom_stats_recursive(cc_round)
-    out = f'Recursive {stats[cc_round]["name"]}\nTorque: {stats[cc_round]["torque"]}\nSpeed: {stats[cc_round]["speed"]}\nReverse: {stats[cc_round]["reverse"]}'
-    print('')
-    print(out)
+    # cc_round = custom_round(cc)
+    # stats = find_custom_stats_recursive(cc_round)
+    # out = f'Recursive {stats[cc_round]["name"]}\nTorque: {stats[cc_round]["torque"]}\nSpeed: {stats[cc_round]["speed"]}\nReverse: {stats[cc_round]["reverse"]}'
+    # print('')
+    # print(out)
 
 
 if __name__ == '__main__':
