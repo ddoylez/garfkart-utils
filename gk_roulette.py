@@ -27,17 +27,13 @@ def build_loadout(seed=None):
     kart = GARAGE[random.choice(list(GARAGE)[1:])]['kart']
 
     hat_options = [GARAGE[char_color]['unique_hat']]
-    for color in list(GARAGE):
-        hat_options.append(GARAGE[color]['hat'])
-
+    hat_options.extend([GARAGE[color]['hat'] for color in list(GARAGE)])
     final_hat_options = [hat for hat in [hat_options[0]] for i in range(20)]
     final_hat_options.extend([hat for hat in [hat_options[1]] for i in range(20)])
     final_hat_options.extend([hat for hat in hat_options[2:] for i in range(10)])
     hat = random.choice(final_hat_options)
 
-    spoiler_options = []
-    for color in list(GARAGE):
-        spoiler_options.append(GARAGE[color]['spoiler'])
+    spoiler_options = [GARAGE[color]['spoiler'] for color in list(GARAGE)]
     final_spoiler_options = [spoiler for spoiler in [spoiler_options[0]] for i in range(20)]
     final_spoiler_options.extend([spoiler for spoiler in spoiler_options[1:] for i in range(10)])
     spoiler = random.choice(final_spoiler_options)
