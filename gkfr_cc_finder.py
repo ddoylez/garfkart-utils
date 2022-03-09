@@ -94,6 +94,7 @@ def main():
     # out = f'Recursive {stats[cc_round]["name"]}\nTorque: {stats[cc_round]["torque"]}\nSpeed: {stats[cc_round]["speed"]}\nReverse: {stats[cc_round]["reverse"]}'
     # print('')
     # print(out)
+    input()
 
 
 if __name__ == '__main__':
