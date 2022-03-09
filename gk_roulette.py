@@ -25,11 +25,23 @@ def build_loadout(seed=None):
     char_color = random.choice(list(GARAGE)[1:])
     char = GARAGE[char_color]['character']
     kart = GARAGE[random.choice(list(GARAGE)[1:])]['kart']
+
     hat_options = [GARAGE[char_color]['unique_hat']]
     for color in list(GARAGE):
         hat_options.append(GARAGE[color]['hat'])
-    hat = random.choice(hat_options)
-    spoiler = GARAGE[random.choice(list(GARAGE))]['spoiler']
+
+    final_hat_options = [hat for hat in [hat_options[0]] for i in range(20)]
+    final_hat_options.extend([hat for hat in [hat_options[1]] for i in range(20)])
+    final_hat_options.extend([hat for hat in hat_options[2:] for i in range(10)])
+    hat = random.choice(final_hat_options)
+
+    spoiler_options = []
+    for color in list(GARAGE):
+        spoiler_options.append(GARAGE[color]['spoiler'])
+    final_spoiler_options = [spoiler for spoiler in [spoiler_options[0]] for i in range(20)]
+    final_spoiler_options.extend([spoiler for spoiler in spoiler_options[1:] for i in range(10)])
+    spoiler = random.choice(final_spoiler_options)
+
     loadout = {'character': char, 'kart': kart, 'hat': hat, 'spoiler': spoiler}
     return loadout
 
@@ -42,9 +54,9 @@ def main():
         hat = loadout['hat']
         spoiler = loadout['spoiler']
         out = f'C: {char}\nK: {kart}\nH: {hat}\nS: {spoiler}'
-        with open('text/gkr.txt', 'w', encoding='utf-8') as o:
-            o.write(out)
-            o.close()
+        # with open('gkr.txt', 'w', encoding='utf-8') as o:
+        #     o.write(out)
+        #     o.close()
         print(out)
         inp = input('Reroll? Yes/No\n')
         if 'y' not in inp.lower():
