@@ -50,9 +50,9 @@ def main():
         hat = loadout['hat']
         spoiler = loadout['spoiler']
         out = f'C: {char}\nK: {kart}\nH: {hat}\nS: {spoiler}'
-        # with open('gkr.txt', 'w', encoding='utf-8') as o:
-        #     o.write(out)
-        #     o.close()
+        with open('C:/Users/Dan/Documents/obs dump/misc/gkr.txt', 'w', encoding='utf-8') as o:
+            o.write(out)
+            o.close()
         print(out)
         inp = input('Reroll? Yes/No\n')
         if 'y' not in inp.lower():
